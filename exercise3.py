@@ -25,21 +25,21 @@ class Rectangle:
     def upper_right(self) -> Point2D:
         return self.corner(3)
 
-    def _is_in_interval(self, value: float, start: float, end: float, tolerance: float = 0.0) -> bool:
-        return start - tolerance <= value <= end + tolerance
-
     def contains(self, point: Point2D, tolerance: float = 0.0) -> bool:
         """Return True if point lies inside or on the boundary of the rectangle."""
         return (
             self._is_in_interval(point.x, self._lower_left.x, self._lower_left.x + self._dx, tolerance)
-            and self._is_in_interval(point.y, self._lower_left.y, self._lower_left.y + self._dy, tolerance)
-        )
+            and self._is_in_interval(point.y, self._lower_left.y, self._lower_left.y + self._dy, tolerance))
 
     def _is_idx_on_upper_edge(self, i: int) -> bool:
         return i in [2, 3]
 
     def _is_idx_on_right_edge(self, i: int) -> bool:
         return i in [1, 3]
+
+    # def is_in_interval(...) -> bool: # Task A
+    def _is_in_interval(self, value: float, start: float, end: float, tolerance: float = 0.0) -> bool:
+        return start - tolerance <= value <= end + tolerance
 
 
 
