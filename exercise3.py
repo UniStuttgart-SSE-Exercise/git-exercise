@@ -3,7 +3,7 @@ from exercise2 import Point2D
 
 
 class Rectangle:
-    def __init__(self, lower_left: Point2D, dx: float, dy: float) -> None:
+    def _init_(self, lower_left: Point2D, dx: float, dy: float) -> None:
         self._lower_left = lower_left
         self._dx = dx
         self._dy = dy
@@ -25,16 +25,15 @@ class Rectangle:
     def upper_right(self) -> Point2D:
         return self.corner(3)
 
-   def contains(self, point: Point2D, tolerance: float = 0.0) -> bool:
+    def contains(self, point: Point2D, tolerance: float = 0.0) -> bool:
         """Return True if point lies inside or on the boundary of the rectangle."""
         return (
             self._is_in_interval(point.x, self._lower_left.x, self._lower_left.x + self._dx, tolerance)
-            and self._is_in_interval(point.y, self._lower_left.y, self._lower_left.y + self._dy, tolerance)
-        )
+            and self._is_in_interval(point.y, self._lower_left.y, self._lower_left.y + self._dy, tolerance))
 
     def _is_idx_on_upper_edge(self, i: int) -> bool:
         return i in [2, 3]
-    
+
     def _is_idx_on_right_edge(self, i: int) -> bool:
         return i in [1, 3]
 
@@ -73,7 +72,7 @@ def test_rectangle_contains_tolerance() -> None:
     assert not rectangle.contains(lower_right)
     assert not rectangle.contains(upper_right)
 
-    # Task B: make the tests below pass by adding optional tolerance argument to `contains`
+    # Task B: make the tests below pass by adding optional tolerance argument to contains
     assert not rectangle.contains(lower_left, tolerance=eps/2.0)
     assert not rectangle.contains(upper_left, tolerance=eps/2.0)
     assert not rectangle.contains(lower_right, tolerance=eps/2.0)
